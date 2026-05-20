@@ -120,6 +120,71 @@ L'image `hello-docker` ne doit plus apparaître.
 
 ---
 
+## Exercices optionnels rapides
+
+Ces manipulations prennent quelques minutes chacune et complètent le cycle de base.
+
+Si les étapes de nettoyage ont déjà été effectuées, reconstruis d'abord l'image :
+
+```bash
+docker build -t hello-docker .
+```
+
+### Lire les logs du conteneur
+
+Relance le conteneur en arrière-plan, puis affiche sa sortie standard :
+
+```bash
+docker run -d -p 3001:3001 --name hello-container hello-docker
+docker logs hello-container
+```
+
+### Exécuter une commande dans le conteneur
+
+Entre dans le conteneur actif pour observer son système de fichiers :
+
+```bash
+docker exec -it hello-container sh
+pwd
+ls
+exit
+```
+
+Avant l'exercice suivant, libère le nom du conteneur et le port exposé :
+
+```bash
+docker rm -f hello-container
+```
+
+### Passer une variable d'environnement
+
+Lance un conteneur avec une variable, puis vérifie qu'elle existe dans l'environnement :
+
+```bash
+docker run -d -p 3002:3001 --name hello-env -e MESSAGE="Bonjour Docker" hello-docker
+docker exec hello-env printenv MESSAGE
+```
+
+### Observer un multi-stage très simple
+
+Remplace temporairement le Dockerfile par cette structure pour distinguer une étape de préparation et une étape finale légère :
+
+```Dockerfile
+FROM node:24-alpine AS base
+WORKDIR /app
+COPY index.js .
+
+FROM node:24-alpine
+WORKDIR /app
+COPY --from=base /app/index.js .
+EXPOSE 3001
+CMD ["node", "index.js"]
+```
+
+Reconstruis ensuite l'image avec `docker build -t hello-docker .`.
+
+---
+
 ## Ce que tu dois être capable d'expliquer à la fin
 
 - Quelle est la différence entre une **image** et un **conteneur** ?

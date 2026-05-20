@@ -19,6 +19,14 @@ Tu vas écrire un Dockerfile minimaliste, construire une image, lancer un conten
 
 ---
 
+## Contexte des Pull Requests en TP
+
+Par défaut, la Pull Request est ouverte **dans ton fork** : la branche `feature/add-task-filter` est proposée vers `main` de ton dépôt forké.
+
+Si l'enseignant le demande explicitement, la Pull Request peut être ouverte vers le dépôt central `GVI2026/tp-github-flow`. Sans droit d'écriture ou sans accès GitHub disponible, le même raisonnement peut être simulé localement en comparant la branche de feature avec `main`, puis en expliquant le merge attendu.
+
+---
+
 ## Partie 2 — GitHub Flow
 
 ### Objectif
