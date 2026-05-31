@@ -97,7 +97,11 @@ Le query param `done` est obligatoire pour cet exercice. C'est un booléen trans
 8. Traiter les retours de relecture.
 9. Fusionner la Pull Request dans `main`.
 10. Vérifier que `main` reste fonctionnelle après la fusion.
-11. Depuis l'interface web GitHub, créer une release manuelle en renseignant un tag basé sur `main`, avec un titre et des notes de version. GitHub créera le tag au moment de publier la release.
+11. Préparer le passage en `1.0.0` sur `main` :
+    - mettre à jour `package.json` et `package-lock.json` de `0.0.1` vers `1.0.0` ;
+    - créer ou mettre à jour `CHANGELOG.md` avec les changements livrés ;
+    - committer ces fichiers avec le message `chore(release): bump project to version to 1.0.0`.
+12. Depuis l'interface web GitHub, créer une release manuelle en renseignant le tag `v1.0.0` basé sur ce commit de release, avec un titre et des notes de version. GitHub créera le tag au moment de publier la release.
 
 ---
 
