@@ -14,8 +14,9 @@ export class TasksService {
     });
   }
 
-  async findAll(): Promise<Task[]> {
+  async findAll(done?: boolean): Promise<Task[]> {
     return this.prisma.task.findMany({
+      where: done !== undefined ? { done } : undefined,
       orderBy: { createdAt: 'desc' },
     });
   }
